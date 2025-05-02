@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div>
+    <h1>Редактирование поста</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="title">Заголовок</label>
+        {{form.title}}
+        <label for="content">Контент</label>
+        {{form.content}}
+        <label for="image">Картинки</label>
+        {{form.images}}
+
+        {%  for img in post_att %}
+        <div>
+            <input type="checkbox" value="{{img.pk}}" name='attachments'>
+            <img src="{{img.image.url}}" width="300px">
+        </div>
+        {%  endfor %}
+
+        <button type="submit">Сохранит пост</button>
+    </form>
+</div>
+{% endblock content %}
+
+    
